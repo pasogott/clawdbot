@@ -1343,7 +1343,8 @@ export async function monitorWebProvider(
 
       // Send ack reaction after successful reply
       const ackReaction = (cfg.messages?.ackReaction ?? "").trim();
-      const ackReactionScope = cfg.messages?.ackReactionScope ?? "group-mentions";
+      const ackReactionScope =
+        cfg.messages?.ackReactionScope ?? "group-mentions";
       const shouldAckReaction = () => {
         if (!ackReaction) return false;
         if (!msg.id) return false;
