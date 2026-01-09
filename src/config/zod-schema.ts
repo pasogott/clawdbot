@@ -1287,6 +1287,16 @@ export const ClawdbotSchema = z
                       .optional(),
                   )
                   .optional(),
+                ackReaction: z
+                  .object({
+                    emoji: z.string().optional(),
+                    direct: z.boolean().optional().default(true),
+                    group: z
+                      .enum(["always", "mentions", "never"])
+                      .optional()
+                      .default("mentions"),
+                  })
+                  .optional(),
               })
               .superRefine((value, ctx) => {
                 if (value.dmPolicy !== "open") return;
@@ -1331,6 +1341,16 @@ export const ClawdbotSchema = z
               })
               .optional(),
           )
+          .optional(),
+        ackReaction: z
+          .object({
+            emoji: z.string().optional(),
+            direct: z.boolean().optional().default(true),
+            group: z
+              .enum(["always", "mentions", "never"])
+              .optional()
+              .default("mentions"),
+          })
           .optional(),
       })
       .superRefine((value, ctx) => {
